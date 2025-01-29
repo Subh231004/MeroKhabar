@@ -1,0 +1,66 @@
+.site-header {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.login-btn {
+  padding: 0.5rem 1rem;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.main-nav,
+.secondary-nav {
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.main-nav ul,
+.secondary-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.main-nav a {
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.secondary-nav a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.main-nav a:hover,
+.secondary-nav a:hover {
+  color: #007bff;
+}
+

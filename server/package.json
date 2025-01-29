@@ -1,6 +1,7 @@
 {
-  "name": "mero-khabhar-server",
+  "name": "news-portal-server",
   "version": "1.0.0",
+  "description": "Server for News Portal application",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,6 +12,7 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.0.1"
   }
 }
+

@@ -1,0 +1,84 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Global Climate Summit Reaches Historic Agreement",
+      "content": "In a landmark decision, world leaders have agreed to ambitious climate goals...",
+      "excerpt": "195 countries sign binding agreement to reduce emissions by 50% by 2030",
+      "image": "https://sjc.microlink.io/9Piri5emzXKy3dJZtqzM8MRU-oi1HbjMuYWgYATDYJCU4ZDsaFCNDNOIsLH0GLU3jVrc18KxACEgGndjdWo0gQ.jpeg",
+      "category": "Featured",
+      "author": "John Smith",
+      "publishedAt": "2024-01-28T09:00:00Z",
+      "isFeatured": true,
+      "importance": "high"
+    },
+    {
+      "id": 2,
+      "title": "Tech Giant Unveils Revolutionary AI Platform",
+      "content": "Silicon Valley's leading tech company announced a breakthrough in artificial intelligence...",
+      "excerpt": "New AI system shows unprecedented capabilities in problem-solving",
+      "image": "https://sjc.microlink.io/9Piri5emzXKy3dJZtqzM8MRU-oi1HbjMuYWgYATDYJCU4ZDsaFCNDNOIsLH0GLU3jVrc18KxACEgGndjdWo0gQ.jpeg",
+      "category": "Technology",
+      "author": "Sarah Johnson",
+      "publishedAt": "2024-01-28T08:30:00Z",
+      "isFeatured": false,
+      "importance": "medium"
+    },
+    {
+      "id": 3,
+      "title": "National Team Advances to World Cup Finals",
+      "content": "In a thrilling match that kept fans on the edge of their seats...",
+      "excerpt": "Historic victory secures spot in championship match",
+      "image": "https://sjc.microlink.io/9Piri5emzXKy3dJZtqzM8MRU-oi1HbjMuYWgYATDYJCU4ZDsaFCNDNOIsLH0GLU3jVrc18KxACEgGndjdWo0gQ.jpeg",
+      "category": "Sports",
+      "author": "Mike Wilson",
+      "publishedAt": "2024-01-28T07:45:00Z",
+      "isFeatured": false,
+      "importance": "high"
+    },
+    {
+      "id": 4,
+      "title": "Stock Market Hits All-Time High",
+      "content": "Global markets surged today as investor confidence reached new peaks...",
+      "excerpt": "Major indices show record gains amid positive economic data",
+      "image": "https://sjc.microlink.io/9Piri5emzXKy3dJZtqzM8MRU-oi1HbjMuYWgYATDYJCU4ZDsaFCNDNOIsLH0GLU3jVrc18KxACEgGndjdWo0gQ.jpeg",
+      "category": "Business",
+      "author": "Rachel Green",
+      "publishedAt": "2024-01-28T07:00:00Z",
+      "isFeatured": false,
+      "importance": "high"
+    },
+    {
+      "id": 5,
+      "title": "Breakthrough in Cancer Research",
+      "content": "Scientists announce promising results in early-stage clinical trials...",
+      "excerpt": "New treatment shows 90% success rate in preliminary studies",
+      "image": "https://sjc.microlink.io/9Piri5emzXKy3dJZtqzM8MRU-oi1HbjMuYWgYATDYJCU4ZDsaFCNDNOIsLH0GLU3jVrc18KxACEgGndjdWo0gQ.jpeg",
+      "category": "Health",
+      "author": "Dr. David Chen",
+      "publishedAt": "2024-01-28T06:15:00Z",
+      "isFeatured": true,
+      "importance": "medium"
+    },
+    {
+      "id": 6,
+      "title": "Major Cultural Festival Begins",
+      "content": "The city's annual cultural festival kicked off with spectacular performances...",
+      "excerpt": "Month-long celebration features artists from over 30 countries",
+      "image": "https://sjc.microlink.io/9Piri5emzXKy3dJZtqzM8MRU-oi1HbjMuYWgYATDYJCU4ZDsaFCNDNOIsLH0GLU3jVrc18KxACEgGndjdWo0gQ.jpeg",
+      "category": "Entertainment",
+      "author": "Lisa Park",
+      "publishedAt": "2024-01-28T05:30:00Z",
+      "isFeatured": false,
+      "importance": "low"
+    },
+    {
+      "id": 7,
+      "title": "NAYA MAAL",
+      "content": "WOWWW",
+      "category": "Business",
+      "image": "",
+      "publishedAt": "2025-01-28T18:35:48.222Z"
+    }
+  ]
+}

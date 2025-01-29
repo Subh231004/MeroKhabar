@@ -1,90 +1,92 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const cors = require('cors');
+const express = require("express")
+const cors = require("cors")
+const fs = require("fs").promises
+const path = require("path")
 
-const app = express();
+const app = express()
+app.use(cors())
+app.use(express.json())
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+const dataPath = path.join(__dirname, "data", "articles.json")
 
-// Create data directory if it doesn't exist
-const dataDir = path.join(__dirname, 'data');
-if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir);
-}
+// Get all articles
+app.get("/api/articles", async (req, res) => {
+  try {
+    const data = await fs.readFile(dataPath, "utf8")
+    const articles = JSON.parse(data).articles
+    res.json(articles)
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch articles" })
+  }
+})
 
-// Initial data
-const initialData = {
-    news: [
-        {
-            id: "1",
-            title: "Welcome to Mero Khabhar",
-            content: "This is your first news article. You can add more through the admin panel.",
-            category: "General",
-            image: "https://picsum.photos/800/400",
-            author: "Admin",
-            publishDate: new Date().toISOString()
-        }
-    ],
-    users: [
-        {
-            id: "1",
-            name: "Admin User",
-            email: "admin@example.com",
-            password: "admin123",
-            role: "admin"
-        }
-    ]
-};
-
-// Save initial data if file doesn't exist
-const DATA_FILE = path.join(__dirname, 'data', 'news.json');
-if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(initialData, null, 2));
-}
-
-// Routes
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to Mero Khabhar API' });
-});
-
-app.get('/api/news', (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DATA_FILE));
-    res.json(data.news);
-});
-
-app.post('/api/news', (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DATA_FILE));
-    const newNews = {
-        id: Date.now().toString(),
-        ...req.body,
-        publishDate: new Date().toISOString()
-    };
-    data.news.unshift(newNews);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
-    res.json(newNews);
-});
-
-app.post('/api/auth/login', (req, res) => {
-    const { email, password } = req.body;
-    const data = JSON.parse(fs.readFileSync(DATA_FILE));
-    const user = data.users.find(u => u.email === email && u.password === password);
-    
-    if (user) {
-        res.json({
-            token: 'dummy-token',
-            user: {
-                id: user.id,
-                name: user.name,
-                role: user.role
-            }
-        });
+// Get single article
+app.get("/api/articles/:id", async (req, res) => {
+  try {
+    const data = await fs.readFile(dataPath, "utf8")
+    const articles = JSON.parse(data).articles
+    const article = articles.find((a) => a.id === Number.parseInt(req.params.id))
+    if (article) {
+      res.json(article)
     } else {
-        res.status(401).json({ message: 'Invalid credentials' });
+      res.status(404).json({ error: "Article not found" })
     }
-});
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch article" })
+  }
+})
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Create article
+app.post("/api/articles", async (req, res) => {
+  try {
+    const data = await fs.readFile(dataPath, "utf8")
+    const { articles } = JSON.parse(data)
+    const newArticle = {
+      id: articles.length + 1,
+      ...req.body,
+      publishedAt: new Date().toISOString(),
+    }
+    articles.push(newArticle)
+    await fs.writeFile(dataPath, JSON.stringify({ articles }, null, 2))
+    res.json(newArticle)
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create article" })
+  }
+})
+
+// Update article
+app.put("/api/articles/:id", async (req, res) => {
+  try {
+    const data = await fs.readFile(dataPath, "utf8")
+    const { articles } = JSON.parse(data)
+    const index = articles.findIndex((a) => a.id === Number.parseInt(req.params.id))
+    if (index !== -1) {
+      articles[index] = { ...articles[index], ...req.body }
+      await fs.writeFile(dataPath, JSON.stringify({ articles }, null, 2))
+      res.json(articles[index])
+    } else {
+      res.status(404).json({ error: "Article not found" })
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update article" })
+  }
+})
+
+// Delete article
+app.delete("/api/articles/:id", async (req, res) => {
+  try {
+    const data = await fs.readFile(dataPath, "utf8")
+    const { articles } = JSON.parse(data)
+    const filteredArticles = articles.filter((a) => a.id !== Number.parseInt(req.params.id))
+    await fs.writeFile(dataPath, JSON.stringify({ articles: filteredArticles }, null, 2))
+    res.json({ message: "Article deleted" })
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete article" })
+  }
+})
+
+const PORT = 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
+
