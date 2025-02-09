@@ -1,21 +1,72 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import "./NewsCard.css"
+import { Cloud, User } from "lucide-react"
+import "./Navbar.css"
 
-function NewsCard({ article }) {
+function Navbar() {
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  })
+
+  const mainCategories = [
+    "News",
+    "Commerce",
+    "thought",
+    "sports",
+    "valley",
+    "entertainment",
+    "photofeature",
+    "feature",
+    "world",
+    "blog",
+    "Koseli",
+    "migration",
+    "education"
+  ]
+
+  
+
   return (
-    <div className="news-card">
-      <Link to={`/article/${article.id}`}>
-        <img src={article.image || "/placeholder.svg"} alt={article.title} />
-        <div className="news-content">
-          <span className="category">{article.category}</span>
-          <h4>{article.title}</h4>
-          <p>{article.excerpt}</p>
+    <nav className="navbar">
+      <div className="top-bar">
+        <div className="date">{today}</div>
+        <Link to="/" className="logo">
+          <img src="/merokhabar.png" alt="Mero Khabar" className="logo-image" />
+        </Link>
+        <div className="info-section">
+          <div className="weather-info">
+            <Cloud size={16} />
+            <span>19.12°C Kathmandu</span>
+          </div>
+          <div className="air-quality">
+            <span>Air quality in Kathmandu:</span>
+            <span className="quality-value">170</span>
+          </div>
+          <Link to="/login" className="login-button">
+            <User size={16} />
+            Login
+          </Link>
         </div>
-      </Link>
-    </div>
+      </div>
+
+      <div className="main-nav">
+        <div className="nav-links">
+          {mainCategories.map((category) => (
+            <Link
+              key={category}
+              to={`/${category.toLowerCase().replace(/\s+/g, '-')}`}
+              className="nav-link"
+            >
+              {category}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </nav>
   )
 }
 
-export default NewsCard
-
+export default Navbar 

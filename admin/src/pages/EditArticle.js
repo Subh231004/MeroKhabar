@@ -14,7 +14,7 @@ function EditArticle() {
 
   useEffect(() => {
     if (id !== "new") {
-      fetch(`http://localhost:3001/api/articles/${id}`)
+      fetch(`http://localhost:3002/api/articles/${id}`)
         .then((res) => res.json())
         .then((data) => setArticle(data))
     }
@@ -23,7 +23,7 @@ function EditArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const method = id === "new" ? "POST" : "PUT"
-    const url = id === "new" ? "http://localhost:3001/api/articles" : `http://localhost:3001/api/articles/${id}`
+    const url = id === "new" ? "http://localhost:3002/api/articles" : `http://localhost:3002/api/articles/${id}`
 
     await fetch(url, {
       method,

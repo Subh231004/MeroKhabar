@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+
+# misc
+.DS_Store
+.env
+.env.local
+
+npm-debug.log*
+
+# Large media files
+/uploads
+/public/images
+/public/videos 

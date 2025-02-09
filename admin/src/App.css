@@ -9,3 +9,21 @@
   overflow-y: auto;
 }
 
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-main {
+  flex: 1;
+  background-color: #f8f9fa;
+  margin-left: 250px; /* Width of sidebar */
+}
+
+@media (max-width: 768px) {
+  .admin-main {
+    margin-left: 0;
+    padding-left: 60px; /* Width of collapsed sidebar */
+  }
+}
+

@@ -6,14 +6,14 @@ function Articles() {
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/articles")
+    fetch("http://localhost:3002/api/articles")
       .then((res) => res.json())
       .then((data) => setArticles(data))
   }, [])
 
   const deleteArticle = async (id) => {
     if (window.confirm("Are you sure you want to delete this article?")) {
-      await fetch(`http://localhost:3001/api/articles/${id}`, {
+      await fetch(`http://localhost:3002/api/articles/${id}`, {
         method: "DELETE",
       })
       setArticles(articles.filter((article) => article.id !== id))

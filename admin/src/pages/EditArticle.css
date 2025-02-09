@@ -1,7 +1,18 @@
 .edit-article {
   padding: 20px;
 }
+.article-form-container {
+  padding: 2rem;
+}
 
+.article-form-container h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0 0 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+}
 .form-group {
   margin-bottom: 15px;
 }

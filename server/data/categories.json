@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Breaking News",
+      "articleCount": 15,
+      "color": "#4CAF50"
+    },
+    {
+      "id": 2,
+      "name": "Sports",
+      "articleCount": 8,
+      "color": "#2196F3"
+    },
+    {
+      "id": 3,
+      "name": "Technology",
+      "articleCount": 12,
+      "color": "#9C27B0"
+    },
+    {
+      "id": 4,
+      "name": "Entertainment",
+      "articleCount": 10,
+      "color": "#FF9800"
+    },
+    {
+      "id": 5,
+      "name": "Business",
+      "articleCount": 10,
+      "color": "#E91E63"
+    },
+    {
+      "id": 6,
+      "name": "Lifestyle",
+      "articleCount": 10,
+      "color": "#795548"
+    },
+    {
+      "id": 7,
+      "name": "sac",
+      "articleCount": 0,
+      "color": "#8f0954"
+    }
+  ]
+}

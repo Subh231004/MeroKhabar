@@ -8,7 +8,7 @@ function Category() {
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/articles?category=${categoryId}`)
+    fetch(`http://localhost:3002/api/articles?category=${categoryId}`)
       .then((res) => res.json())
       .then((data) => setArticles(data))
   }, [categoryId])

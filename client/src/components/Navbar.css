@@ -1,36 +1,114 @@
 .navbar {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  width: 100%;
+  background-color: #1a1a1a;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-bar {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  position: relative;
 }
 
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+.date {
+  font-size: 0.875rem;
+  color: #ffffff;
 }
 
-.navbar-brand a {
-  color: #333;
-  text-decoration: none;
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 0;
 }
 
-.navbar-nav {
+.logo-image {
+  height: 50px;
+  width: auto;
+}
+
+.info-section {
   display: flex;
-  gap: 1rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.navbar-nav a {
-  color: #333;
+.weather-info, .air-quality {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
+.quality-value {
+  color: #ff9800;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.navbar-nav a:hover {
-  color: #007bff;
+.main-nav {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.nav-links {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.75rem 1rem;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+  text-transform: capitalize;
+}
+
+.nav-link:hover {
+  color: #ff4444;
+}
+
+
+@media (max-width: 1024px) {
+  .nav-links, .sub-nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .info-section {
+    display: none;
+  }
+
+  .date {
+    display: none;
+  }
+
+  .logo {
+    position: static;
+    transform: none;
+  }
+
+  .logo-image {
+    height: 40px;
+  }
+} 
