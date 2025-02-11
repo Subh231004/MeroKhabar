@@ -1,111 +1,148 @@
-# 📰 MeroKhabar - News Portal
+# 📰 Mero Khabar
 
-MeroKhabar is a **full-stack news portal** that provides users with the latest news across multiple categories. Built with **React.js** for the frontend and **Node.js with Express.js** for the backend, it ensures a smooth and dynamic experience for browsing and reading news articles.
+Mero Khabar is a news website that allows users to read the latest articles on various topics. It features an **Admin Dashboard** where authorized users can **create, edit, and delete articles**. The application is built using **React.js** for the frontend and **Node.js/Express.js** for the backend, with JSON files used for data storage instead of a database.
 
-## 🚀 Features
+## ✨ Features
 
-- ✅ **Dynamic News Feed** - Fetches and displays news articles categorized for easy navigation.
-- ✅ **Category-Based Filtering** - View articles based on topics of interest.
-- ✅ **Detailed Article Page** - Read full articles in an intuitive interface.
-- ✅ **Responsive UI** - Optimized for both desktop and mobile devices.
-- ✅ **Fast Performance** - React-based frontend with efficient state management.
-- ✅ **REST API Integration** - Fetches articles from the Express.js backend.
+- 🗞 **News Listing**: Browse news articles on different topics.
+- 🛠 **Admin Dashboard**: Manage articles and categories.
+- 💾 **Local Storage**: News articles are stored in JSON files.
+- 🎨 **User-Friendly UI**: Simple and interactive design for easy navigation.
 
----
-
-## 🏗️ Project Structure
-
-```
-MeroKhabar/
-├── client/             # Frontend (React.js)
-│   ├── public/         # Static assets
-│   ├── src/            # Source code
-│   │   ├── components/  # UI Components
-│   │   ├── pages/       # Page-level components
-│   │   ├── App.js
-│   │   ├── index.js
-│   ├── package.json    # Frontend dependencies
-├── server/             # Backend (Node.js + Express)
-│   ├── data/          # Sample news articles
-│   ├── server.js      # Express server setup
-│   ├── package.json   # Backend dependencies
-└── README.md           # Main project README
-```
-
----
-
-## 🛠️ Tech Stack
+## 🏗 Tech Stack
 
 ### Frontend:
-- **React.js** - Component-based UI
-- **React Router** - Navigation management
-- **CSS Modules** - Modular styling
+- ⚛️ React.js
+- 📌 Context API
+- 🎨 CSS (for styling)
 
 ### Backend:
-- **Node.js + Express.js** - API and server handling
-- **JSON Data Storage** - Stores article data locally
+- 🟢 Node.js
+- 🚀 Express.js
+- 📂 File System (JSON for storage)
 
----
+## 📂 File Structure
 
-## 📦 Installation & Setup
+```
+|   README.md
+|
++---admin
+|   |   package.json
+|   |
+|   +---public
+|   |       index.html
+|   |       logo.png
+|   |
+|   \---src
+|       |   App.js
+|       |   index.js
+|       |
+|       +---components
+|       |       AddArticle.js
+|       |       Dashboard.js
+|       |       Sidebar.js
+|       |       UserManagement.js
+|       |
+|       +---contexts
+|       |       CategoryContext.js
+|       |
+|       \---services
+|               api.js
+|
++---client
+|   |   package.json
+|   |
+|   +---public
+|   |       index.html
+|   |       merokhabar.png
+|   |
+|   \---src
+|       |   App.js
+|       |   index.js
+|       |
+|       +---components
+|       |       Navbar.js
+|       |       NewsCard.js
+|       |
+|       +---pages
+|       |       Home.js
+|       |       Login.js
+|       |
+|       \---services
+|               api.js
+|
+\---server
+    |   index.js
+    |   package.json
+    |   server.js
+    |
+    +---data
+    |       articles.json
+    |       categories.json
+    |       users.json
+    |
+    \---routes
+            articles.js
+            categories.js
+            users.js
+```
 
-Follow these steps to set up the project locally:
+## 🚀 Installation & Setup
 
-1. **Clone the Repository**
+### Prerequisites:
+Make sure you have **Node.js** and **npm** installed.
+
+### Steps to Run:
+
+1. **Clone the Repository:**
    ```bash
    git clone https://github.com/the-abhishekroy/MeroKhabar.git
    cd MeroKhabar
    ```
 
-2. **Install Dependencies**
+2. **Install Dependencies:**
    ```bash
-   cd client && npm install
+   cd admin && npm install
+   cd ../client && npm install
    cd ../server && npm install
    ```
 
-3. **Start the Backend Server**
+3. **Run the Server:**
    ```bash
-   cd server
-   node server.js
-   ```
-
-4. **Start the Frontend**
-   ```bash
-   cd client
+   cd ../server
    npm start
    ```
 
-5. **Access the Application**
-   Open your browser and visit: `http://localhost:3000`
+4. **Run the Admin Panel:**
+   ```bash
+   cd ../admin
+   npm start
+   ```
 
----
+5. **Run the Client:**
+   ```bash
+   cd ../client
+   npm start
+   ```
 
-## 📌 Future Enhancements
+The admin panel will be available at `http://localhost:3001` 🚀, the frontend at `http://localhost:3000` 🌍, and the backend at `http://localhost:3002` ⚡.
 
-- 🔄 **Live News API Integration** - Fetch real-time news.
-- 🔐 **User Authentication** - Personalized content for users.
-- 🛢️ **Database Integration** - Use MongoDB/PostgreSQL for persistent storage.
-- 📊 **UI/UX Enhancements** - Improve design and add animations.
+## 🤝 Contributing
 
----
-
-## 🤝 Contribution
-
-Contributions are welcome! To contribute:
-1. Fork the repository.
-2. Create a new branch for your feature/bugfix.
-3. Commit your changes and push to your forked repository.
-4. Submit a pull request describing your changes.
-
----
+Want to contribute? Follow these steps:
+- Fork the repository 🍴.
+- Create a new branch (`git checkout -b feature-branch`) 🌿.
+- Commit your changes (`git commit -m "Added new feature"`) ✅.
+- Push to the branch (`git push origin feature-branch`) 🚀.
+- Open a pull request 🔥.
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is open-source and available under the **MIT License**.
 
 ---
 
-💡 ## Contact
+👨‍💻 **Author:** 
 - **Author**: Abhishek Roy  
 - **GitHub**: [the-abhishekroy](https://github.com/the-abhishekroy)  
 - **Email**: [the.abhishekkroy@gmail.com](mailto:the.abhishekkroy@gmail.com)
