@@ -48,7 +48,16 @@ function Dashboard() {
     engagement: "23%"
   };
 
-  
+  const formatDateTime = (dateString) => {
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    return new Date(dateString).toLocaleString('en-US', options);
+  };
 
   return (
     <div className="dashboard-container">
@@ -133,7 +142,7 @@ function Dashboard() {
               <tr>
                 <th>Title</th>
                 <th>Category</th>
-                <th>Date</th>
+                <th>Date & Time</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
@@ -143,7 +152,7 @@ function Dashboard() {
                 <tr key={article.id}>
                   <td>{article.title}</td>
                   <td>{article.category}</td>
-                  <td>{new Date(article.publishedAt).toLocaleDateString()}</td>
+                  <td>{formatDateTime(article.publishedAt)}</td>
                   <td>
                     <span className={`status ${article.isFeatured ? 'featured' : 'standard'}`}>
                       {article.isFeatured ? 'Featured' : 'Standard'}

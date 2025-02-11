@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoryContext';
 import { api } from '../services/api';
 import './ArticleManagement.css';
+import { formatDateTime } from '../utils/dateFormat';
 
 function ArticleManagement() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function ArticleManagement() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
+  
 
   useEffect(() => {
     fetchArticles();
@@ -109,7 +111,7 @@ function ArticleManagement() {
               <th>Title</th>
               <th>Category</th>
               <th>Author</th>
-              <th>Date</th>
+              <th>Date & Time</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -120,7 +122,7 @@ function ArticleManagement() {
                 <td>{article.title}</td>
                 <td>{article.category}</td>
                 <td>{article.author}</td>
-                <td>{new Date(article.publishedAt).toLocaleDateString()}</td>
+                <td className="datetime-cell">{formatDateTime(article.publishedAt)}</td>
                 <td>
                   <span className={`status ${article.isFeatured ? 'featured' : 'standard'}`}>
                     {article.isFeatured ? 'Featured' : 'Standard'}
@@ -131,18 +133,21 @@ function ArticleManagement() {
                     <button 
                       className="view-btn"
                       onClick={() => handleView(article.id)}
+                      title="View Article"
                     >
                       <Eye size={16} />
                     </button>
                     <button 
                       className="edit-btn"
                       onClick={() => handleEdit(article.id)}
+                      title="Edit Article"
                     >
                       <Edit size={16} />
                     </button>
                     <button 
                       className="delete-btn"
                       onClick={() => handleDeleteArticle(article.id)}
+                      title="Delete Article"
                     >
                       <Trash2 size={16} />
                     </button>

@@ -158,6 +158,12 @@ th {
 .edit-btn:hover { background-color: #bbdefb; }
 .delete-btn:hover { background-color: #ffcdd2; }
 
+.datetime-cell {
+  white-space: nowrap;
+  color: #666;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   .article-management {
     padding: 1rem;
@@ -181,5 +187,18 @@ th {
 
   .action-buttons {
     flex-wrap: wrap;
+  }
+
+  .articles-table {
+    overflow-x: auto;
+  }
+
+  .datetime-cell {
+    font-size: 0.8rem;
+    min-width: 140px;
+  }
+
+  table {
+    min-width: 800px;
   }
 }

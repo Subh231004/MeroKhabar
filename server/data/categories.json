@@ -38,9 +38,15 @@
     },
     {
       "id": 7,
-      "name": "sac",
+      "name": "Romance",
       "articleCount": 0,
-      "color": "#8f0954"
+      "color": "#d2e07f"
+    },
+    {
+      "id": 8,
+      "name": "Film",
+      "articleCount": 0,
+      "color": "#eddfa0"
     }
   ]
 }

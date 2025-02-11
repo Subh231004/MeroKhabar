@@ -162,6 +162,24 @@
   overflow-x: auto;
 }
 
+.articles-table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.articles-table td:nth-child(3) {
+  /* Date & Time column */
+  white-space: nowrap;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .articles-table td:nth-child(3) {
+    font-size: 0.8rem;
+  }
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

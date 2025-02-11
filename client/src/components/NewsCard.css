@@ -2,11 +2,12 @@
   border: 1px solid #eee;
   border-radius: 4px;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  transition: transform 0.2s;
+  height: 100%;
 }
 
 .news-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .news-card img {
@@ -42,3 +43,17 @@
   color: inherit;
 }
 
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .news-card img {
+    height: 180px;
+  }
+
+  .news-content {
+    padding: 12px;
+  }
+
+  .news-content h4 {
+    font-size: 1rem;
+  }
+}

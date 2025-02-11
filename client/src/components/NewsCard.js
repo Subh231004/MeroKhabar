@@ -16,4 +16,3 @@ function NewsCard({ article, featured }) {
 }
 
 export default NewsCard
-

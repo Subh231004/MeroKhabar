@@ -1,33 +1,62 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Cloud, User } from "lucide-react"
+import { Wind, User } from "lucide-react"
 import "./Navbar.css"
 
 function Navbar() {
+  const [categories, setCategories] = useState([]);
+  const [weather, setWeather] = useState(null);
+  const [windSpeed, setWindSpeed] = useState(null);
+  
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric"
-  })
+  });
 
-  const mainCategories = [
-    "News",
-    "Commerce",
-    "thought",
-    "sports",
-    "valley",
-    "entertainment",
-    "photofeature",
-    "feature",
-    "world",
-    "blog",
-    "Koseli",
-    "migration",
-    "education"
-  ]
+  const getWeatherEmoji = (description) => {
+    const weatherMap = {
+      'clear sky': '☀️',
+      'few clouds': '🌤️',
+      'scattered clouds': '☁️',
+      'broken clouds': '☁️',
+      'shower rain': '🌧️',
+      'rain': '🌧️',
+      'thunderstorm': '⛈️',
+      'snow': '🌨️',
+      'mist': '🌫️'
+    };
+    return weatherMap[description.toLowerCase()] || '🌡️';
+  };
 
-  
+  // Fetch weather data
+  useEffect(() => {
+    const WEATHER_API_KEY = '3938e34b9a43af2092c9884d0d7e0f99'; 
+    const GANGTOK_LAT = '27.3314';
+    const GANGTOK_LON = '88.6138';
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${GANGTOK_LAT}&lon=${GANGTOK_LON}&units=metric&appid=${WEATHER_API_KEY}`)
+      .then(res => res.json())
+      .then(data => {
+        setWeather({
+          temp: data.main.temp.toFixed(1),
+          description: data.weather[0].description
+        });
+        setWindSpeed(data.wind.speed.toFixed(1));
+      })
+      .catch(error => console.error('Error fetching weather:', error));
+  }, []);
+
+  // Fetch categories
+  useEffect(() => {
+    fetch("http://localhost:3002/api/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch(error => console.error('Error fetching categories:', error));
+  }, []);
 
   return (
     <nav className="navbar">
@@ -38,13 +67,12 @@ function Navbar() {
         </Link>
         <div className="info-section">
           <div className="weather-info">
-            <Cloud size={16} />
-            <span>19.12°C Kathmandu</span>
+            {weather && getWeatherEmoji(weather.description)}
+            <span>
+              {weather ? `${weather.temp}°C Gangtok` : 'Loading...'}
+            </span>
           </div>
-          <div className="air-quality">
-            <span>Air quality in Kathmandu:</span>
-            <span className="quality-value">170</span>
-          </div>
+          
           <Link to="/login" className="login-button">
             <User size={16} />
             Login
@@ -54,13 +82,13 @@ function Navbar() {
 
       <div className="main-nav">
         <div className="nav-links">
-          {mainCategories.map((category) => (
+          {categories.map((category) => (
             <Link
-              key={category}
-              to={`/${category.toLowerCase().replace(/\s+/g, '-')}`}
+              key={category.id}
+              to={`/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
               className="nav-link"
             >
-              {category}
+              {category.name}
             </Link>
           ))}
         </div>
@@ -69,4 +97,4 @@ function Navbar() {
   )
 }
 
-export default Navbar 
+export default Navbar

@@ -9,7 +9,7 @@ function CategoryManagement() {
   const [editingId, setEditingId] = useState(null);
 
   const handleAddCategory = async (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     if (newCategory.trim()) {
       try {
         const categoryData = {
@@ -17,10 +17,13 @@ function CategoryManagement() {
           articleCount: 0
         };
         
+        console.log('Sending category data:', categoryData); // Debug log
         await addCategory(categoryData);
+        await refreshCategories(); // Add this line to refresh the list
         setNewCategory('');
       } catch (error) {
-        console.error('Error adding category:', error);
+        console.error('Detailed error:', error.message); // More detailed error
+        alert(`Failed to add category: ${error.message}`); // Add error feedback
       }
     }
   };
@@ -29,11 +32,10 @@ function CategoryManagement() {
     if (window.confirm('Are you sure you want to delete this category?')) {
       try {
         await deleteCategory(id);
-        // Optionally refresh the categories list
-        await refreshCategories();
+        // No need to call refreshCategories here since we update state in context
       } catch (error) {
         console.error('Error deleting category:', error);
-        alert('Failed to delete category. Please try again.');
+        alert('Failed to delete category: ' + error.message);
       }
     }
   };
@@ -46,6 +48,33 @@ function CategoryManagement() {
       console.error('Error updating category:', error);
     }
   };
+
+  // Add loading state
+  if (!categories || categories.length === 0) {
+    return (
+      <div className="category-management">
+        <div className="management-header">
+          <h1>Category Management</h1>
+          <form className="add-category" onSubmit={handleAddCategory}>
+            <input
+              type="text"
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+              placeholder="New category name"
+              required
+            />
+            <button type="submit" className="add-btn">
+              <Plus size={20} />
+              Add Category
+            </button>
+          </form>
+        </div>
+        <div className="categories-grid">
+          <p>No categories found. Add your first category above.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="category-management">

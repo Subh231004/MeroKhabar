@@ -23,6 +23,17 @@ function Home() {
       });
   }, []);
 
+  const formatDateTime = (dateString) => {
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    return new Date(dateString).toLocaleString('en-US', options);
+  };
+
   return (
     <>
       <div className="home-container">
@@ -37,6 +48,9 @@ function Home() {
                   />
                   <h2 className="line-clamp-2">{featuredArticles[0].title}</h2>
                   <p>{featuredArticles[0].excerpt}</p>
+                  <span className="datetime">
+                    {formatDateTime(featuredArticles[0].publishedAt)}
+                  </span>
                 </Link>
               </div>
             )}
@@ -60,7 +74,13 @@ function Home() {
               {articles
                 .filter((article) => !article.isFeatured)
                 .map((article) => (
-                  <NewsCard key={article.id} article={article} />
+                  <NewsCard 
+                    key={article.id} 
+                    article={{
+                      ...article,
+                      formattedDate: formatDateTime(article.publishedAt)
+                    }} 
+                  />
                 ))}
             </section>
 
@@ -72,7 +92,7 @@ function Home() {
                     <Link to={`/article/${article.id}`}>
                       <h4 className="line-clamp-2">{article.title}</h4>
                       <span className="time">
-                        {new Date(article.publishedAt).toLocaleTimeString()}
+                        {formatDateTime(article.publishedAt)}
                       </span>
                     </Link>
                   </div>
@@ -88,4 +108,3 @@ function Home() {
 }
 
 export default Home;
-

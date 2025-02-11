@@ -81,6 +81,33 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Add new category with article count
+router.post('/categories', async (req, res) => {
+  try {
+    const { name, articleCount } = req.body;
+    
+    // Validate input
+    if (!name || typeof name !== 'string') {
+      return res.status(400).json({ message: 'Invalid category name' });
+    }
+
+    // Add category to database
+    const newCategory = {
+      id: Date.now(), // or your DB's ID generation
+      name: name.trim(),
+      articleCount: articleCount || 0
+    };
+
+    // Save to database
+    // ... your database logic here
+
+    res.status(201).json(newCategory);
+  } catch (error) {
+    console.error('Server error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 // Delete category
 router.delete('/:id', async (req, res) => {
   try {
@@ -101,6 +128,19 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     console.error('Error deleting category:', error);
     res.status(500).json({ message: 'Error deleting category' });
+  }
+});
+
+// Delete category by ID
+router.delete('/categories/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Your deletion logic here
+    // ...
+    res.status(200).json({ message: 'Category deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting category:', error);
+    res.status(500).json({ message: 'Failed to delete category' });
   }
 });
 
