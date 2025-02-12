@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import NewsCard from "../components/NewsCard"
-import "./Category.css"
+import NewsCard from "./NewsCard"
+import "../styles/Category.css"
 
 function Category() {
   const { categoryId } = useParams()

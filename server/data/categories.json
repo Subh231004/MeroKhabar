@@ -2,51 +2,33 @@
   "categories": [
     {
       "id": 1,
-      "name": "Breaking News",
-      "articleCount": 15,
-      "color": "#4CAF50"
+      "name": "Politics",
+      "slug": "politics",
+      "description": "Political news"
     },
     {
       "id": 2,
-      "name": "Sports",
-      "articleCount": 8,
-      "color": "#2196F3"
+      "name": "Technology",
+      "slug": "technology",
+      "description": "Tech news"
     },
     {
       "id": 3,
-      "name": "Technology",
-      "articleCount": 12,
-      "color": "#9C27B0"
+      "name": "Sports",
+      "slug": "sports",
+      "description": "Sports news"
     },
     {
       "id": 4,
-      "name": "Entertainment",
-      "articleCount": 10,
-      "color": "#FF9800"
+      "name": "Breaking News",
+      "slug": "breaking-news",
+      "description": "Breaking News"
     },
     {
       "id": 5,
       "name": "Business",
-      "articleCount": 10,
-      "color": "#E91E63"
-    },
-    {
-      "id": 6,
-      "name": "Lifestyle",
-      "articleCount": 10,
-      "color": "#795548"
-    },
-    {
-      "id": 7,
-      "name": "Romance",
-      "articleCount": 0,
-      "color": "#d2e07f"
-    },
-    {
-      "id": 8,
-      "name": "Film",
-      "articleCount": 0,
-      "color": "#eddfa0"
+      "slug": "business",
+      "description": "Business"
     }
   ]
 }

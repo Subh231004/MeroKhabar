@@ -1,0 +1,124 @@
+.notifications-wrapper {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.notifications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+}
+
+.notifications-header h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.notifications-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.notifications-top-bar {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.clear-all-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.clear-all-btn:hover {
+  background: #c82333;
+}
+
+.notifications-list {
+  padding: 20px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.read {
+  opacity: 0.7;
+  background: #f8f9fa;
+}
+
+.notification-icon {
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-icon.info {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.notification-icon.warning {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-content p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.notification-date {
+  font-size: 12px;
+  color: #666;
+}
+
+.mark-read-btn {
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.mark-read-btn:hover {
+  background: #c8e6c9;
+}

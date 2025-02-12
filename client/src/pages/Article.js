@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import "./Article.css"
+import "../styles/Article.css"
 import Footer from "../components/Footer"
 
 function Article() {

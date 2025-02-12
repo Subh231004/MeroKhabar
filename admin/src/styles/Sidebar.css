@@ -1,0 +1,138 @@
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 1rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 100;
+}
+
+.sidebar-header {
+  padding: 1.2rem;
+  border-bottom: 1px solid #333;
+  background: #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #666 #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 3px;
+}
+
+/* Add this new class for the main content */
+.main-content {
+  margin-left: 260px;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.nav-section {
+  margin-bottom: 1.5rem;
+}
+
+.nav-section h3 {
+  color: #666;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #ccc;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  background: #333;
+  color: #fff;
+}
+
+.nav-item.active {
+  background: #2c2c2c;
+  color: #fff;
+}
+
+.nav-item svg {
+  margin-right: 0.75rem;
+}
+
+.nav-item span {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .main-content {
+    margin-left: 60px;
+    padding: 1rem;
+  }
+
+  .sidebar-header h2,
+  .nav-item span {
+    display: none;
+  }
+
+  .nav-item {
+    justify-content: center;
+    padding: 0.75rem;
+  }
+}
+

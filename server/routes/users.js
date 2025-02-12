@@ -1,73 +1,71 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs').promises;
-const path = require('path');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-const usersFilePath = path.join(__dirname, '../data/users.json');
+// Mock user data (replace with database implementation)
+const users = [
+  {
+    id: 1,
+    username: 'admin',
+    password: '$2b$10$YourHashedPasswordHere', // admin123
+    role: 'admin'
+  }
+];
 
 // Get all users
 router.get('/', async (req, res) => {
   try {
-    const data = await fs.readFile(usersFilePath, 'utf8');
-    const { users } = JSON.parse(data);
-    res.json(users);
+    res.json(users.map(({ password, ...user }) => user));
   } catch (error) {
-    res.status(500).json({ error: 'Error reading users data' });
+    res.status(500).json({ message: error.message });
   }
 });
 
-// Add new user
-router.post('/', async (req, res) => {
+// Create new user
+router.post('/register', async (req, res) => {
   try {
-    const data = await fs.readFile(usersFilePath, 'utf8');
-    const { users } = JSON.parse(data);
+    const { username, password, role } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
     
     const newUser = {
-      id: users.length ? Math.max(...users.map(u => u.id)) + 1 : 1,
-      ...req.body,
-      status: 'Active',
-      joinDate: new Date().toISOString().split('T')[0],
-      avatar: `https://ui-avatars.com/api/?name=${req.body.name.replace(' ', '+')}`
+      id: users.length + 1,
+      username,
+      password: hashedPassword,
+      role: role || 'user'
     };
-
+    
     users.push(newUser);
-    await fs.writeFile(usersFilePath, JSON.stringify({ users }, null, 2));
-    res.status(201).json(newUser);
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Error adding new user' });
+    res.status(400).json({ message: error.message });
   }
 });
 
-// Delete user
-router.delete('/:id', async (req, res) => {
+// Login user
+router.post('/login', async (req, res) => {
   try {
-    const data = await fs.readFile(usersFilePath, 'utf8');
-    let { users } = JSON.parse(data);
-    
-    users = users.filter(user => user.id !== parseInt(req.params.id));
-    await fs.writeFile(usersFilePath, JSON.stringify({ users }, null, 2));
-    res.json({ message: 'User deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ error: 'Error deleting user' });
-  }
-});
+    const { username, password } = req.body;
+    const user = users.find(u => u.username === username);
 
-// Update user status
-router.patch('/:id/status', async (req, res) => {
-  try {
-    const data = await fs.readFile(usersFilePath, 'utf8');
-    let { users } = JSON.parse(data);
-    
-    users = users.map(user => 
-      user.id === parseInt(req.params.id)
-        ? { ...user, status: user.status === 'Active' ? 'Inactive' : 'Active' }
-        : user
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign(
+      { id: user.id, username: user.username, role: user.role },
+      process.env.JWT_SECRET || 'your-secret-key',
+      { expiresIn: '1h' }
     );
 
-    await fs.writeFile(usersFilePath, JSON.stringify({ users }, null, 2));
-    res.json(users.find(user => user.id === parseInt(req.params.id)));
+    res.json({ token });
   } catch (error) {
-    res.status(500).json({ error: 'Error updating user status' });
+    res.status(500).json({ message: error.message });
   }
 });
 

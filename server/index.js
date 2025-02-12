@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const usersRouter = require('./routes/users');
+const categoriesRouter = require('./routes/categories');
 
 // Middleware
 app.use(cors());
@@ -122,8 +124,9 @@ app.get('/api/featured', (req, res) => {
   }
 });
 
-app.use('/api/users', require('./routes/users'));
-app.use('/api/categories', require('./routes/categories'));
+// Routes
+app.use('/api/users', usersRouter);
+app.use('/api/categories', categoriesRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

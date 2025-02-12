@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Wind, User } from "lucide-react"
-import "./Navbar.css"
+import "../styles/Navbar.css"
 
 function Navbar() {
   const [categories, setCategories] = useState([]);
@@ -50,12 +50,17 @@ function Navbar() {
 
   // Fetch categories
   useEffect(() => {
-    fetch("http://localhost:3002/api/categories")
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:3002/api/categories');
+        const data = await response.json();
         setCategories(data);
-      })
-      .catch(error => console.error('Error fetching categories:', error));
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
   return (
@@ -85,13 +90,14 @@ function Navbar() {
           {categories.map((category) => (
             <Link
               key={category.id}
-              to={`/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
+              to={`/category/${category.id}`}
               className="nav-link"
             >
               {category.name}
             </Link>
           ))}
         </div>
+        
       </div>
     </nav>
   )

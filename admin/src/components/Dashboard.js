@@ -9,7 +9,7 @@ import {
   List,
   Grid,
 } from 'lucide-react';
-import './Dashboard.css';
+import '../styles/Dashboard.css';
 import { api } from '../services/api';
 
 
@@ -41,6 +41,11 @@ function Dashboard() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    navigate('/login');
+  };
+
   const stats = {
     articles: 156,
     users: 2489,
@@ -65,11 +70,10 @@ function Dashboard() {
       <div className="dashboard-topbar">
         <h1>Admin Dashboard</h1>
         <div className="topbar-right">
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
           
-          <div className="admin-profile">
-            <img src="admin-avatar.png" alt="Admin" />
-            <span>Abhishek Roy</span>
-          </div>
         </div>
       </div>
 

@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const CategoryContext = createContext();
+export const CategoryContext = createContext();
+
+export function useCategories() {
+  return useContext(CategoryContext);
+}
 
 export function CategoryProvider({ children }) {
   const [categories, setCategories] = useState([]);
@@ -10,7 +14,11 @@ export function CategoryProvider({ children }) {
       const response = await fetch('http://localhost:3002/api/categories');
       if (!response.ok) throw new Error('Failed to fetch categories');
       const data = await response.json();
-      setCategories(data);
+      // Ensure we're getting the full category data including article counts
+      setCategories(data.map(category => ({
+        ...category,
+        articleCount: category.articleCount || 0
+      })));
     } catch (error) {
       console.error('Error refreshing categories:', error);
     }
@@ -77,5 +85,3 @@ export function CategoryProvider({ children }) {
     </CategoryContext.Provider>
   );
 }
-
-export const useCategories = () => useContext(CategoryContext);

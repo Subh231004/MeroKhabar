@@ -15,7 +15,7 @@ import {
   Cell
 } from 'recharts';
 import { TrendingUp, Users, Eye, Clock } from 'lucide-react';
-import './Analytics.css';
+import '../styles/Analytics.css';
 
 
 function Analytics() {

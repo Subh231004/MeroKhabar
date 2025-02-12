@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoryContext';
 import { api } from '../services/api';
-import './ArticleForm.css';
+import '../styles/ArticleForm.css';
 
 function AddArticle() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function AddArticle() {
   const [article, setArticle] = useState({
     title: '',
     content: '',
-    category: '',
+    category: '', 
     image: '',
     author: '',
     isFeatured: false
@@ -20,7 +20,7 @@ function AddArticle() {
 
   useEffect(() => {
     if (categories.length > 0 && !article.category) {
-      setArticle(prev => ({ ...prev, category: categories[0].name }));
+      setArticle(prev => ({ ...prev, category: categories[0].id }));
     }
   }, [categories, article.category]);
 
@@ -32,7 +32,7 @@ function AddArticle() {
       await refreshCategories(); // Refresh categories to update article counts
       navigate('/articles');
     } catch (err) {
-      setError(err.message);
+      console.error('Error adding article:', err);
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +72,7 @@ function AddArticle() {
             <option value="">Select a category</option>
             {categories && categories.length > 0 ? (
               categories.map(category => (
-                <option key={category.id} value={category.name}>
+                <option key={category.id} value={category.id}>
                   {category.name} 
                 </option>
               ))

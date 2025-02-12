@@ -3,12 +3,12 @@ import { Edit, Trash2, Eye, Search } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoryContext';
 import { api } from '../services/api';
-import './ArticleManagement.css';
+import '../styles/ArticleManagement.css';
 import { formatDateTime } from '../utils/dateFormat';
 
 function ArticleManagement() {
   const navigate = useNavigate();
-  const { refreshCategories } = useCategories();
+  const { categories, refreshCategories } = useCategories();  // Add categories from context
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
@@ -28,7 +28,7 @@ function ArticleManagement() {
     }
   };
 
-  const handleDeleteArticle = async (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this article?')) {
       try {
         await api.deleteArticle(id);
@@ -49,10 +49,17 @@ function ArticleManagement() {
     window.open(`/article/${id}`, '_blank');
   };
 
+  // Add function to get category name by ID
+  const getCategoryName = (categoryId) => {
+    const category = categories.find(cat => cat.id === parseInt(categoryId));
+    return category ? category.name : 'Unknown';
+  };
+
+  // Update the filtered articles to use category IDs for filtering
   const filteredArticles = articles
     .filter(article => {
       const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = filterCategory === 'all' || article.category === filterCategory;
+      const matchesCategory = filterCategory === 'all' || article.category === parseInt(filterCategory);
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -86,12 +93,11 @@ function ArticleManagement() {
             onChange={(e) => setFilterCategory(e.target.value)}
           >
             <option value="all">All Categories</option>
-            <option value="Breaking News">Breaking News</option>
-            <option value="Sports">Sports</option>
-            <option value="Technology">Technology</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Business">Business</option>
-            <option value="Lifestyle">Lifestyle</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
           </select>
 
           <select
@@ -120,7 +126,7 @@ function ArticleManagement() {
             {filteredArticles.map(article => (
               <tr key={article.id}>
                 <td>{article.title}</td>
-                <td>{article.category}</td>
+                <td>{getCategoryName(article.category)}</td>
                 <td>{article.author}</td>
                 <td className="datetime-cell">{formatDateTime(article.publishedAt)}</td>
                 <td>
@@ -146,7 +152,7 @@ function ArticleManagement() {
                     </button>
                     <button 
                       className="delete-btn"
-                      onClick={() => handleDeleteArticle(article.id)}
+                      onClick={() => handleDelete(article.id)}
                       title="Delete Article"
                     >
                       <Trash2 size={16} />

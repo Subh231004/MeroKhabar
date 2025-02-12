@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Save, Bell, Lock, Globe, Palette } from 'lucide-react';
-import './Settings.css';
+import '../styles/Settings.css';
 
 function Settings() {
   const [settings, setSettings] = useState({

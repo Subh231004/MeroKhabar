@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NewsCard from "../components/NewsCard";
 import Footer from "../components/Footer";
-import "./Home.css";
+import "../styles/Home.css";
 
 function Home() {
   const [articles, setArticles] = useState([]);
@@ -51,6 +51,7 @@ function Home() {
                   <span className="datetime">
                     {formatDateTime(featuredArticles[0].publishedAt)}
                   </span>
+                  <button className="read-more">Read More</button>
                 </Link>
               </div>
             )}
@@ -63,6 +64,11 @@ function Home() {
                       alt={article.title}
                     />
                     <h3 className="line-clamp-2">{article.title}</h3>
+                    <p className="line-clamp-2">{article.excerpt}</p>
+                    <span className="datetime">
+                      {formatDateTime(article.publishedAt)}
+                    </span>
+                    <button className="read-more">Read More</button>
                   </Link>
                 </div>
               ))}
