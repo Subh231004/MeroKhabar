@@ -29,6 +29,12 @@
       "name": "Business",
       "slug": "business",
       "description": "Business"
+    },
+    {
+      "id": 6,
+      "name": "Happiness",
+      "slug": "happiness",
+      "description": "Happy"
     }
   ]
 }

@@ -2,22 +2,21 @@
   "name": "news-portal-client",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "dependencies": {
-    "axios": "^1.3.5",
+    "axios": "^1.7.9",
     "lucide-react": "^0.474.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "set PORT=3000 && react-scripts start",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "nodemon --watch src --exec \"set PORT=3000 && react-scripts start\"",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "clean": "rm -rf node_modules/.cache && rm -rf build",
-    "preview": "vite preview"
+    "clean": "rm -rf node_modules/.cache && rm -rf build"
   },
   "eslintConfig": {
     "extends": [
@@ -38,8 +37,6 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^3.1.9",
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.3.9"
+    "nodemon": "^3.1.9"
   }
 }

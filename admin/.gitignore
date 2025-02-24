@@ -24,4 +24,3 @@ yarn-error.log*
 # Large media files
 /public/images
 /public/videos 
-.vercel

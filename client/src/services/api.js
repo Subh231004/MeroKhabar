@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://your-project.vercel.app/api' 
-  : 'http://localhost:3002';
+const API_URL = 'http://localhost:3002/api';
 
 export const api = {
   // Get all articles
@@ -28,4 +26,4 @@ export const api = {
     const response = await axios.get(`${API_URL}/featured`);
     return response.data;
   }
-};
+}; 
