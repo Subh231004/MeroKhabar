@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3002/api';
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://your-project.vercel.app/api' 
+  : 'http://localhost:3002';
 
 export const api = {
   // Get all articles
@@ -32,4 +34,4 @@ export const api = {
     const response = await axios.delete(`${API_URL}/articles/${id}`);
     return response.data;
   }
-}; 
+};
