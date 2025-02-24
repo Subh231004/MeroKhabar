@@ -11,13 +11,15 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "set PORT=3000 && react-scripts start",
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "dev": "nodemon --watch src --exec \"set PORT=3000 && react-scripts start\"",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clean": "rm -rf node_modules/.cache && rm -rf build"
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",

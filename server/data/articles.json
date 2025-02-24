@@ -5,7 +5,7 @@
       "title": "Sample Article",
       "excerpt": " This is a sample article",
       "content": "Content here",
-      "category": 1,
+      "category": "3",
       "author": "John Doe",
       "publishedAt": "2024-02-11T12:00:00.000Z",
       "isFeatured": false,
