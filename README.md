@@ -47,7 +47,7 @@ Mero Khabar is a news website that allows users to read the latest articles on v
 |       |       CategoryContext.js
 |       |
 |       \---services
-|               api.js
+|               .js
 |
 +---client
 |   |   package.json
@@ -81,10 +81,15 @@ Mero Khabar is a news website that allows users to read the latest articles on v
     |       categories.json
     |       users.json
     |
-    \---routes
-            articles.js
-            categories.js
-            users.js
+    +---routes
+    |       api.js  (New file)
+    |       articles.js
+    |       categories.js
+    |       users.js
+    |
+    \---models  (New folder for MongoDB schemas)
+            Article.js
+
 ```
 
 ## 🚀 Installation & Setup

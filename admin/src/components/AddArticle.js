@@ -65,21 +65,18 @@ function AddArticle() {
         <div className="form-group">
           <label>Category</label>
           <select 
-            value={article.category}
-            onChange={(e) => setArticle({...article, category: e.target.value})}
-            required
-          >
-            <option value="">Select a category</option>
-            {categories && categories.length > 0 ? (
-              categories.map(category => (
-                <option key={category.id} value={category.id}>
-                  {category.name} 
-                </option>
-              ))
-            ) : (
-              <option value="" disabled>Loading categories...</option>
-            )}
-          </select>
+  value={article.category}
+  onChange={(e) => setArticle({...article, category: e.target.value})}
+  required
+>
+  <option value="">Select a category</option>
+  {["Politics", "Technology", "Business", "Health", "Sports", "Entertainment"].map((category, index) => (
+    <option key={index} value={category}>
+      {category}
+    </option>
+  ))}
+</select>
+
         </div>
         <div className="form-group">
           <label>Image URL</label>
