@@ -14,13 +14,15 @@ router.get("/", async (req, res) => {
 
 // ✅ Corrected POST route (changed `app.post` to `router.post`)
 router.post("/", async (req, res) => {
-  try {
-    const newArticle = new Article(req.body);
-    await newArticle.save();
-    res.status(201).json(newArticle);
-  } catch (err) {
-    res.status(500).json({ error: "Error saving article", details: err.message });
-  }
+ try{
+  const newArticle = new Article(req.body);
+  const savedArticle = await newArticle.save();
+  res.status(201).json(savedArticle);
+ }catch (err) {
+       res.status(500).json({
+        message:err.message
+       });
+ }
 });
 
 module.exports = router;
